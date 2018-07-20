@@ -1,0 +1,19 @@
+<% if user_signed_in? %>
+  <div class="navbar-item has-dropdown is-hoverable">
+    <a class="navbar-link">
+      Your Profile
+    </a>
+    <div class="navbar-dropdown">
+      <%= link_to "View Your Profile", "#", class: "navbar-item" %>
+      <%= link_to "Update Your Profile", edit_user_registration_url, class: "navbar-item" %>
+      <hr class="navbar-divider">
+      <div class="navbar-item">
+        Version 0.7.1
+      </div>
+    </div>
+  </div>
+  <%= link_to "Log out", destroy_user_session_url, class: "navbar-item", method: :delete %>
+<% else %>
+  <%= link_to "Log in", new_user_session_url, class: "navbar-item" %>
+  <%= link_to "Sign up", new_user_registration_url, class: "navbar-item" %>
+<% end %>
