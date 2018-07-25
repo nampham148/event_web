@@ -1,0 +1,50 @@
+// Place all the styles related to the Events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "bulma";
+@import "font-awesome";
+
+.bm--card-equal-height {
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+}
+.bm--card-equal-height .card-footer {
+   margin-top: auto;
+}
+
+.title-date {
+  border-right: solid 1px grey;
+}
+
+.title-day {
+  color: red;
+  font-size: 125%;
+}
+
+.title-event-name {
+  font-weight: bold;
+  font-size: 125%;
+}
+
+hr {
+  margin: 0px !important;
+  background-color: $grey-lighter !important;
+}
+
+#title-event {
+  margin-bottom: 0px;
+}
+
+.event-icon {
+  font-size: 180%;
+}
+
+.nav-button {
+  margin-top: 20px;
+}
+
+.long-desc {
+  margin-top: 20px;
+}

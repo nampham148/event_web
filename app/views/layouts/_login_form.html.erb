@@ -4,8 +4,11 @@
       Your Profile
     </a>
     <div class="navbar-dropdown">
-      <%= link_to "View Your Profile", "#", class: "navbar-item" %>
+      <%= link_to "View Your Profile", current_user, class: "navbar-item" %>
       <%= link_to "Update Your Profile", edit_user_registration_url, class: "navbar-item" %>
+      <%= link_to "Connect to Facebook", user_facebook_omniauth_authorize_url, class: "navbar-item" %>
+      <%= link_to "Connect to Twitter", user_twitter_omniauth_authorize_url, class: "navbar-item" %>
+      <%= link_to "Connect to Google", user_google_oauth2_omniauth_authorize_url, class: "navbar-item" %>
       <hr class="navbar-divider">
       <div class="navbar-item">
         Version 0.7.1

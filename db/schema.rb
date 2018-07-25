@@ -10,7 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180717014604) do
+ActiveRecord::Schema.define(version: 20180723035812) do
+
+  create_table "events", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name"
+    t.string "location"
+    t.datetime "registration_start"
+    t.datetime "registration_end"
+    t.datetime "event_start"
+    t.datetime "event_end"
+    t.string "short_desc"
+    t.text "long_desc"
+    t.string "picture"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "cover_picture", default: "default-event-cover.jpg"
+    t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "identities", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "provider"
+    t.string "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_identities_on_user_id"
+  end
+
+  create_table "registrations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_registrations_on_event_id"
+    t.index ["user_id", "event_id"], name: "index_registrations_on_user_id_and_event_id", unique: true
+    t.index ["user_id"], name: "index_registrations_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

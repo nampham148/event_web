@@ -12,6 +12,15 @@
     <%= render 'layouts/header' %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    
+    <div id="flash">
+      <% flash.each do |key, value| %>
+        <%= content_tag :div, class: "notification is-#{key}" do %>
+          <button class="delete" onclick="$('#flash').hide()"></button>
+          <%= value %>
+        <% end %>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>

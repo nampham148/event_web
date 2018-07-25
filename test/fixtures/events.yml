@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  name: MyString
+  location: MyString
+  registration_start: 2018-07-20 11:11:03
+  registration_end: 2018-07-20 11:11:03
+  event_start: 2018-07-20 11:11:03
+  event_end: 2018-07-20 11:11:03
+  short_desc: MyString
+  long_desc: MyText
+  picture: MyString
+
+two:
+  user: two
+  name: MyString
+  location: MyString
+  registration_start: 2018-07-20 11:11:03
+  registration_end: 2018-07-20 11:11:03
+  event_start: 2018-07-20 11:11:03
+  event_end: 2018-07-20 11:11:03
+  short_desc: MyString
+  long_desc: MyText
+  picture: MyString

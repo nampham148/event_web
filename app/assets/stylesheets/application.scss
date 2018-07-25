@@ -21,3 +21,10 @@
 .navbar {
   border-bottom: 1px solid $white-ter;
 }
+
+#flash {
+  position: fixed;
+  top: 65px;
+  width: 100%;
+  z-index: 1;
+}

@@ -1,0 +1,78 @@
+<div class="columns">
+  <div class="column is-6 is-offset-3">
+    <%= image_tag @event.cover_picture, alt: "Cover Photo" %>
+    <div class="columns" id="title-event">
+      <div class="column is-2 is-centered">
+        <div class="title-date has-text-centered">
+          <div class="title-day">
+            <%= @event.event_start.strftime("%b %d") %>
+          </div>
+          <div class="title-year">
+            <%= @event.event_start.strftime("%Y") %>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="title-event-name">
+          <%= @event.name.humanize %>
+        </div>
+        <div>
+          Hosted by <%= link_to @event.user.name, @event.user %>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+    
+    <div class="columns is-vcentered">
+      <div class="column is-narrow">
+        <span class="icon is-large event-icon">
+          <i class="fa fa-table"></i>
+        </span>
+      </div>
+      <div class="column">
+        Event <%= @event.event_start.strftime("%a, %B %d %Y") %> to <%= @event.event_end.strftime("%a, %B %d %Y") %>
+      </div>
+    </div>
+
+    <div class="columns is-vcentered">
+      <div class="column is-narrow">
+        <span class="icon is-large event-icon">
+          <i class="fa fa-user-plus"></i>
+        </span>
+      </div>
+      <div class="column">
+        Registration <%= @event.registration_start.strftime("%a, %B %d %Y") %> to <%= @event.registration_end.strftime("%a, %B %d %Y") %>
+      </div>
+    </div>
+
+    <div class="columns is-vcentered">
+      <div class="column is-narrow">
+        <span class="icon is-large event-icon">
+          <i class="fa fa-map-pin"></i>
+        </span>
+      </div>
+      <div class="column">
+        <%= @event.location %>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="long-desc">
+      <h4 class="title is-4"> Details: </h3>
+      <%= simple_format(@event.long_desc) %>
+    </h4>
+
+    <div class="nav-button">
+      <% if @event.registerable? %>
+        <%= content_tag :div, class: "button is-primary", id: "register-form-#{@event.id}" do %>
+          <%= render 'register_form', event: @event %>
+        <% end %>
+      <% end %>
+      <%= link_to "View Hoster", @event.user, class: "button is-info" %>
+    </div>
+
+  </div>
+</div>
+

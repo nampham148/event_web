@@ -62,3 +62,7 @@ gem 'omniauth-google-oauth2'
 
 gem "bulma-rails", "~> 0.7.1"
 gem "font-awesome-rails"
+
+gem 'faker'
+
+gem 'jquery-rails'

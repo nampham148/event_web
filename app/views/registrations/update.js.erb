@@ -1,0 +1,8 @@
+$("#register-form-" + <%= @event.id %>).html("<%= j render('events/register_form', event: @event) %>");
+$("#flash").show();
+$("#flash").html(`<% flash.each do |key, value| %>
+                    <%= content_tag :div, class: "notification is-#{key}" do %>
+                      <button class="delete" onclick="$('#flash').hide()"></button>
+                      <%= value %>
+                    <% end %>
+                  <% end %>`);

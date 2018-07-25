@@ -1,0 +1,50 @@
+<div class="columns">
+  <div class="column is-10 is-offset-1">
+    <div class="columns">
+      <div class="column is-4">
+        <% if @user.image %>
+          <%= image_tag @user.image, alt: "Profile Picture", size: 50 %>
+        <% else %>
+          <%= image_tag "default-profile-picture.png", alt: "Profile Picture", size: 100 %>
+        <% end %>
+        <h2 class="title is-2 user-name">
+          <%= @user.name %>
+        </h2>
+      </div>
+      <div class="column">
+        <% if @user.events.any? %>
+          <div id="hosted-events">
+            <h3 class="title is-3">
+              Hosted Events (<%= @user.events.count %>)
+            </h3>
+            <div class="columns is-multiline">
+              <%= render partial: "events/event", collection: @user.events.active?.limit(5) %>
+            </div>
+          </div>
+        <% end %>
+        <br>
+        <% if @user.registered_events.active?.any? %>
+          <div id="active-registered-events">
+            <h3 class="title is-3">
+              Upcoming registered Events (<%= @user.registered_events.active?.count %>)
+            </h3>
+            <div class="columns is-multiline">
+              <%= render partial: "events/event", collection: @user.registered_events.active? %>
+            </div>
+          </div>
+        <% end %>
+        <br>
+        <% if @user.registered_events.inactive?.any? %>
+          <div id="active-registered-events">
+            <h3 class="title is-3">
+              Past participated events (<%= @user.registered_events.inactive?.count %>)
+            </h3>
+            <div class="columns is-multiline">
+              <%= render partial: "events/event", collection: @user.registered_events.inactive? %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
