@@ -2,14 +2,18 @@
   <div class="column is-10 is-offset-1">
     <div class="columns">
       <div class="column is-4">
-        <% if @user.image %>
-          <%= image_tag @user.image, alt: "Profile Picture", size: 50 %>
-        <% else %>
-          <%= image_tag "default-profile-picture.png", alt: "Profile Picture", size: 100 %>
-        <% end %>
+        <%= image_tag @user.image, alt: "Profile Picture", size: 50 %>
         <h2 class="title is-2 user-name">
           <%= @user.name %>
         </h2>
+        <p>
+          <% if @user.has_facebook? %>
+            <p> Facebook friends: <%= @user.identities.find_by(provider: "facebook").follower %> </p>
+          <% end %>
+          <% if @user.has_twitter? %>
+            <p> Twitter followers: <%= @user.identities.find_by(provider: "twitter").follower %> </p>
+          <% end %>
+        </p>
       </div>
       <div class="column">
         <% if @user.events.any? %>

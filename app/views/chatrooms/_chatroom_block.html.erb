@@ -1,0 +1,11 @@
+<%= link_to chatroom_block do %>
+  <div class="chatroom-block">
+    <h4 class="title is-4"> <%= chatroom_block.event.name.humanize %> </h4>
+    <% if chatroom_block.messages.any? %>
+      <%= content_tag :p, id: "last-message-#{chatroom_block.id}" do %>
+        <b> <%= chatroom_block.messages.last.user.name %>: </b>
+        <%= chatroom_block.messages.last.content %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

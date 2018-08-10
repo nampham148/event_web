@@ -1,0 +1,24 @@
+<div class="columns">
+  <div class="column is-3 is-offset-1">
+    <%= render partial: 'chatrooms/chatroom_block', collection: @chatrooms %>
+  </div>
+  <div class="column is-7">
+    <div class="has-text-centered chatroom-title-box">
+      <h3 class="title is-3 chatroom-title"> <%= @chatroom.event.name.humanize %> </h3>
+    </div>
+
+    <div class="messages-body">
+      <% if @chatroom.messages.any? %>
+        <div class="panel-body" id="messages">
+          <%= render partial: 'messages/message', collection: @chatroom.messages%>
+        </div>
+      <% else %>
+        <div class="panel-body hidden" id="messages">
+        </div>
+      <% end %>
+    </div>
+
+    <%= render partial: 'messages/message_form', locals: {message: @message, chatroom: @chatroom} %>
+    </div>
+  </div>
+</div>

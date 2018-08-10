@@ -10,6 +10,9 @@
   <div class="navbar-menu">
     <div class="navbar-end">
       <%= link_to "Home", root_url, class: "navbar-item"%>
+      <% if can? :create, Event %>
+        <%= link_to "New Event", new_event_url, class: "navbar-item" %>
+      <% end %>
       <%= render 'layouts/login_form' %>
     </div>
   </div>

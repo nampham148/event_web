@@ -66,3 +66,12 @@ gem "font-awesome-rails"
 gem 'faker'
 
 gem 'jquery-rails'
+
+gem 'assets_js'
+
+gem 'cancancan', '~> 2.0'
+
+#API call
+gem "koala"
+gem 'whenever', require: false
+gem 'twitter'

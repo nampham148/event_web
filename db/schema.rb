@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180723035812) do
+ActiveRecord::Schema.define(version: 20180810025055) do
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.integer "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_chatrooms_on_event_id"
+  end
 
   create_table "events", force: :cascade do |t|
     t.integer "user_id"
@@ -22,7 +29,7 @@ ActiveRecord::Schema.define(version: 20180723035812) do
     t.datetime "event_end"
     t.string "short_desc"
     t.text "long_desc"
-    t.string "picture"
+    t.string "picture", default: "default-event-avatar.png"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "cover_picture", default: "default-event-cover.jpg"
@@ -35,7 +42,19 @@ ActiveRecord::Schema.define(version: 20180723035812) do
     t.string "uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "follower"
+    t.string "token"
     t.index ["user_id"], name: "index_identities_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.integer "user_id"
+    t.integer "chatroom_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "registrations", force: :cascade do |t|
@@ -66,9 +85,10 @@ ActiveRecord::Schema.define(version: 20180723035812) do
     t.string "provider"
     t.string "uid"
     t.string "name"
-    t.text "image"
+    t.text "image", default: "default-profile-picture.png"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

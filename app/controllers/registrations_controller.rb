@@ -1,4 +1,6 @@
 class RegistrationsController < ApplicationController
+  before_action :logged_in
+
   def create
     @event = Event.find(params[:event_id])
     registration = current_user.registrations.build(event_id: @event.id)

@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :events
   has_many :registrations
   has_many :registered_events, through: :registrations, source: :event
+  has_many :messages
+  has_many :chatrooms, through: :registered_events
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -51,6 +53,9 @@ class User < ApplicationRecord
       end
     end
 
+    #add token
+    identity.update_attributes(token: auth.credentials.token)
+
     # Associate the identity with the user if needed
     if identity.user != user
       identity.user = user
@@ -78,6 +83,35 @@ class User < ApplicationRecord
   def unregister(event)
     if self.registered?(event)
       self.registered_events.delete(event)
+    end
+  end
+
+  # MAYBE CAN MAKE THESE TWO METHODS INTO ONE?
+  def has_facebook?
+    !self.identities.find_by(provider: "facebook").nil?
+  end
+
+  def has_twitter?
+    !self.identities.find_by(provider: "twitter").nil?
+  end
+
+  def update_social
+    if self.has_facebook?
+      identity = self.identities.find_by(provider: "facebook")
+      graph = Koala::Facebook::API.new(identity.token)
+      followers = graph.get_connection(identity.uid, 'friends', api_version: 'v2.0').raw_response["summary"]["total_count"]
+      identity.update_attributes(follower: followers)
+    end
+    if self.has_twitter?
+      identity = self.identities.find_by(provider: "twitter")
+      follower = $twitter.user(identity.uid.to_i).followers_count
+      identity.update_attributes(follower: follower)
+    end
+  end
+
+  def self.update_social_media
+    User.find_each do |user|
+      user.update_social
     end
   end
 end

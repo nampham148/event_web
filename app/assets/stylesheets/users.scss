@@ -5,3 +5,11 @@
 .user-name {
   display: inline;
 }
+
+.participant {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid black;
+  margin: 10px;
+  padding: 5px;
+}

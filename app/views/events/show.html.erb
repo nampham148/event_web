@@ -71,6 +71,9 @@
         <% end %>
       <% end %>
       <%= link_to "View Hoster", @event.user, class: "button is-info" %>
+      <% if can? :view_user, @event %>
+        <%= link_to "View participants", view_user_event_path(@event), class: "button is-info" %>
+      <% end %>
     </div>
 
   </div>

@@ -14,3 +14,5 @@
 //= require turbolinks
 //= require_tree .
 //= require jquery
+//= require_tree ./channels
+//= require 'assets_js'

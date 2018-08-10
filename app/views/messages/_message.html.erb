@@ -1,0 +1,9 @@
+<div class="individual-message">
+  <p> <%= message.user.name %> </p>
+  <div style="display: flex" class="is-vcentered">
+    <%= image_tag message.user.image, alt: "profile picture", class: "profile-pic" %>
+    <div class="message-content">
+      <p class="text"> <%= message.content %> </p>
+    </div>
+  </div>
+</div>

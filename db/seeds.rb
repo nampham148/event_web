@@ -6,13 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user = User.first
+user = User.create(name: "Admin", email: "admin@bu.edu", password: "foobar", password_confirmation: "foobar")
 
 15.times do
   name = "#{Faker::Lorem.word}"
   location = "#{Faker::Address.street_name}, #{Faker::Address.city}"
   date = Faker::Date.between(2.years.ago, Date.today)
-  user.events.create(name: name,
+  event = user.events.create(name: name,
                      location: location, 
                      registration_start: date - 30, 
                      registration_end: date - 17, 
@@ -21,14 +21,14 @@ user = User.first
                      short_desc: Faker::Lorem.sentence, 
                      long_desc: Faker::Lorem.paragraphs(3).join("\r\n"),
                      picture: 'default-event-avatar.png')
-
+  Chatroom.create(event_id: event.id)
 end
 
 15.times do
   name = "#{Faker::Lorem.word}"
   location = "#{Faker::Address.street_name}, #{Faker::Address.city}"
   date = Faker::Date.between(14.days.ago, Date.today)
-  user.events.create(name: name,
+  event = user.events.create(name: name,
                      location: location, 
                      registration_start: date, 
                      registration_end: date + 20, 
@@ -37,5 +37,5 @@ end
                      short_desc: Faker::Lorem.sentence, 
                      long_desc: Faker::Lorem.paragraphs(3).join("\r\n"),
                      picture: 'default-event-avatar.png')
-
+  Chatroom.create(event_id: event.id)
 end
